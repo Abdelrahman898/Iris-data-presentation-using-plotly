@@ -1,0 +1,54 @@
+---
+title: "Iris plot created with Plotly"
+author: "Abdelrahman"
+date: "2023-01-26"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+    echo = FALSE,
+    warning = FALSE,
+    message = FALSE
+)
+options(knitr.table.format = "html") 
+```
+
+```{r libraries}
+library(plotly)
+library(gapminder)
+library(kableExtra)
+theme_set(theme_classic() + theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=14,face="bold")))
+```
+
+## The Iris Data
+
+```{r, comment = "##"}
+data("iris")
+head(iris) %>%
+      kbl() %>%
+      kable_classic(full_width = F, html_font = "Cambria")
+```
+
+## Iris with ggplotly
+
+```{r plot, fig.width = 8, fig.height = 5}
+gg <- ggplot(iris,aes(Petal.Width, Petal.Length, color = Species)) +
+    geom_point(aes(
+        alpha = 0.3
+    )) 
+ggplotly(gg)
+```
+
+## Thanks for viewing my presentation!
+
+Here's the code for the plot
+
+```{r, echo = TRUE, eval = FALSE}
+gg <- ggplot(iris,aes(Petal.Width, Petal.Length, color = Species)) +
+    geom_point(aes(
+        alpha = 0.3
+    )) 
+ggplotly(gg)
+```
